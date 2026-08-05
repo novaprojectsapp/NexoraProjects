@@ -26,8 +26,7 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use(passport.initialize());
 
@@ -95,7 +94,7 @@ app.use((req, res, next) => {
   if (req.path.startsWith('/api/')) {
     return res.status(404).json({ success: false, message: 'API endpoint not found' });
   }
-  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+  res.status(404).sendFile(path.join(__dirname, '..', 'views', '404.html'));
 });
 
 app.use((err, req, res, next) => {

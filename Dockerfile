@@ -7,10 +7,8 @@ RUN npm ci --only=production
 
 COPY . .
 
-RUN mkdir -p uploads
-
 EXPOSE 5000
 
 ENV NODE_ENV=production
 
-CMD ["node", "server.js"]
+CMD ["node", "src/server.js"]

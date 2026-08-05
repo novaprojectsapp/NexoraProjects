@@ -86,13 +86,14 @@ Visit **http://localhost:5000**
 
 ```
 NovaProjects/
-├── public/
+├── public/                   # Static frontend assets
 │   ├── css/style.css          # Complete stylesheet
 │   ├── js/app.js              # Frontend logic
+│   ├── js/user.js             # User auth/favorites/profile logic
 │   ├── js/admin.js            # Admin dashboard logic
 │   ├── robots.txt             # SEO
 │   └── sitemap.xml            # SEO
-├── views/
+├── views/                     # HTML pages
 │   ├── index.html             # Home page
 │   ├── projects.html          # All projects
 │   ├── hardware.html          # Hardware category
@@ -100,29 +101,33 @@ NovaProjects/
 │   ├── project-detail.html    # Project details
 │   ├── about.html             # About page
 │   ├── contact.html           # Contact form
+│   ├── login.html             # User login
+│   ├── register.html          # User register
+│   ├── profile.html           # User profile
+│   ├── favorites.html         # User favorites
 │   ├── admin-login.html       # Admin login
 │   ├── admin-dashboard.html   # Admin CRUD dashboard
 │   └── 404.html               # Error page
-├── routes/
-│   ├── auth.js                # Login routes
-│   ├── projects.js            # Project CRUD routes
-│   ├── contact.js             # Contact form route
-│   └── viewRoutes.js          # Page routes
-├── controllers/
-│   ├── authController.js      # Login logic
-│   ├── projectController.js   # Project CRUD logic
-│   └── contactController.js   # Contact form logic
-├── middleware/
-│   ├── auth.js                # JWT verification
-│   └── upload.js              # Multer file upload
-├── models/
-│   ├── Project.js             # Project schema
-│   ├── User.js                # Admin user schema
-│   └── Contact.js             # Contact form schema
-├── config/db.js               # MongoDB connection
-├── scripts/seed.js            # Database seeder
-├── uploads/                   # Uploaded images
-├── server.js                  # Express server entry
+└── src/                       # Backend source
+    ├── server.js              # Express server entry
+    ├── routes/                # Route definitions
+    │   ├── auth.js            # Auth routes
+    │   ├── projects.js        # Project CRUD routes
+    │   ├── contact.js         # Contact form routes
+    │   └── viewRoutes.js      # Page routes
+    ├── controllers/           # Request handlers
+    │   ├── authController.js  # Login logic
+    │   ├── projectController.js # Project CRUD logic
+    │   └── contactController.js # Contact form logic
+    ├── middleware/            # Express middleware
+    │   ├── auth.js            # JWT verification
+    │   └── upload.js          # Multer file upload
+    ├── models/                # Mongoose schemas
+    │   ├── Project.js         # Project schema
+    │   ├── User.js            # User schema
+    │   └── Contact.js         # Contact form schema
+    ├── config/db.js           # MongoDB connection
+    └── scripts/seed.js        # Database seeder
 ├── package.json
 ├── .env.example
 ├── .gitignore
