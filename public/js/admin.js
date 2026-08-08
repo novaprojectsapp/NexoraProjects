@@ -203,7 +203,6 @@
       document.getElementById('pDescription').value = p.description;
       document.getElementById('pTechnology').value = (p.technology || []).join(', ');
       document.getElementById('pDifficulty').value = p.difficulty;
-      document.getElementById('pPrice').value = p.price || 0;
       document.getElementById('pStatus').value = p.status;
       document.getElementById('pGithub').value = p.github || '';
       document.getElementById('pDemo').value = p.demo || '';
@@ -260,7 +259,6 @@
         formData.append('description', document.getElementById('pDescription').value);
         formData.append('technology', document.getElementById('pTechnology').value);
         formData.append('difficulty', document.getElementById('pDifficulty').value);
-        formData.append('price', document.getElementById('pPrice').value);
         formData.append('status', document.getElementById('pStatus').value);
         formData.append('github', document.getElementById('pGithub').value);
         formData.append('demo', document.getElementById('pDemo').value);

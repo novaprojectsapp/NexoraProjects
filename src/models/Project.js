@@ -33,11 +33,6 @@ const projectSchema = new mongoose.Schema(
       enum: ['beginner', 'intermediate', 'advanced'],
       default: 'intermediate',
     },
-    price: {
-      type: Number,
-      default: 0,
-      min: [0, 'Price cannot be negative'],
-    },
     thumbnail: {
       type: String,
       default: '/images/default-project.jpg',

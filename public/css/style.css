@@ -278,8 +278,7 @@ input, select, textarea { font: inherit; color: inherit; }
   padding: 4px 10px; background: rgba(255,255,255,.05);
   border-radius: 50px; font-size: .75rem; color: var(--text-secondary);
 }
-.project-card-footer { display: flex; justify-content: space-between; align-items: center; }
-.project-price { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+.project-card-footer { display: flex; justify-content: flex-end; align-items: center; }
 .project-card-link {
   padding: 8px 20px; border-radius: var(--radius-xs);
   background: rgba(251,227,17,.1); color: var(--primary);
@@ -418,10 +417,6 @@ input, select, textarea { font: inherit; color: inherit; }
   padding: 32px;
   height: fit-content;
   position: sticky; top: 100px;
-}
-.sidebar-price {
-  font-size: 2rem; font-weight: 800; color: var(--primary);
-  margin-bottom: 24px;
 }
 .sidebar-info-item {
   display: flex; justify-content: space-between;

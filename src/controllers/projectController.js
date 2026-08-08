@@ -17,8 +17,6 @@ exports.getProjects = async (req, res) => {
 
     let sortOption = { createdAt: -1 };
     if (sort === 'oldest') sortOption = { createdAt: 1 };
-    if (sort === 'price-low') sortOption = { price: 1 };
-    if (sort === 'price-high') sortOption = { price: -1 };
 
     const skip = (parseInt(page) - 1) * parseInt(limit);
     const total = await Project.countDocuments(query);

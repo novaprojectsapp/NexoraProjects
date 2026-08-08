@@ -161,7 +161,7 @@ NovaProjects/
 | `category` | `hardware`, `software` | `?category=hardware` |
 | `difficulty` | `beginner`, `intermediate`, `advanced` | `?difficulty=beginner` |
 | `featured` | `true` | `?featured=true` |
-| `sort` | `latest`, `oldest`, `price-low`, `price-high` | `?sort=price-low` |
+| `sort` | `latest`, `oldest` | `?sort=oldest` |
 | `page` | Number | `?page=2` |
 | `limit` | Number | `?limit=12` |
 
@@ -267,6 +267,39 @@ Visit `https://your-app-name.onrender.com`
 - **Credentials:** `admin@nova` / `novaadmin123`
 
 > **Important:** Change the admin password after first login for production use.
+
+---
+
+## Vercel Deployment
+
+This project runs on Vercel as a single Express serverless function (`src/server.js`).
+
+### 1. Push to GitHub
+
+```bash
+git add .
+git commit -m "Prepare Vercel deployment"
+git push origin main
+```
+
+### 2. Import on Vercel
+
+1. Go to [vercel.com/new](https://vercel.com/new) and import your GitHub repo
+2. Framework preset: **Other** (no build command needed)
+3. Add these **Environment Variables**:
+
+| Key | Value |
+|-----|-------|
+| `MONGODB_URI` | Your Atlas connection string (required — in-memory DB can't run serverless) |
+| `JWT_SECRET` | A long random string |
+| `JWT_EXPIRE` | `7d` |
+| `GOOGLE_CLIENT_ID` | (optional) Google OAuth client ID |
+| `GOOGLE_CLIENT_SECRET` | (optional) Google OAuth client secret |
+| `GOOGLE_CALLBACK_URL` | `https://your-app.vercel.app/api/auth/google/callback` |
+
+4. Click **Deploy**
+
+> **Note:** `mongodb-memory-server` is only used as a local fallback. On Vercel you must set `MONGODB_URI`.
 
 ---
 

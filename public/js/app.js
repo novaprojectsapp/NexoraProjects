@@ -165,7 +165,6 @@ function createProjectCard(project) {
           ${technologies.map((t) => `<span class="tech-tag">${escapeHtml(t)}</span>`).join('')}
         </div>
         <div class="project-card-footer">
-          <span class="project-price">${project.price > 0 ? '₹' + project.price : 'Free'}</span>
           <span class="project-card-link">View Details →</span>
         </div>
       </div>
@@ -327,7 +326,6 @@ async function loadProjectDetail() {
           </div>
         </div>
         <div class="detail-sidebar">
-          <div class="sidebar-price">${p.price > 0 ? '₹' + p.price : 'Free'}</div>
           <div class="sidebar-info-item"><span>Category</span><span>${escapeHtml(p.category)}</span></div>
           <div class="sidebar-info-item"><span>Difficulty</span><span>${escapeHtml(p.difficulty)}</span></div>
           <div class="sidebar-info-item"><span>Status</span><span>${escapeHtml(p.status)}</span></div>

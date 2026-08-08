@@ -28,6 +28,14 @@ app.use('/api/', limiter);
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+if (require.main !== module) {
+  const dbReady = connectDB().then(ensureAdmin).catch((e) => console.error('DB init error:', e.message));
+  app.use(async (req, res, next) => {
+    await dbReady;
+    next();
+  });
+}
+
 app.use(passport.initialize());
 
 if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
@@ -110,24 +118,28 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
-async function start() {
-  try {
-    await connectDB();
-
-    const adminExists = await User.findOne({ email: 'admin@nova' }).select('+password');
-    if (!adminExists) {
-      await User.create({ name: 'Admin', email: 'admin@nova', password: 'novaadmin123', role: 'admin', authProvider: 'local' });
-      console.log('Admin user created: admin@nova / novaadmin123');
-    } else {
-      console.log('Admin user ready: admin@nova');
-    }
-  } catch (e) {
-    console.error('Startup error:', e.message);
+async function ensureAdmin() {
+  const adminExists = await User.findOne({ email: 'admin@nova' }).select('+password');
+  if (!adminExists) {
+    await User.create({ name: 'Admin', email: 'admin@nova', password: 'novaadmin123', role: 'admin', authProvider: 'local' });
+    console.log('Admin user created: admin@nova / novaadmin123');
+  } else {
+    console.log('Admin user ready: admin@nova');
   }
-
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
 }
 
-start();
+if (require.main === module) {
+  (async () => {
+    try {
+      await connectDB();
+      await ensureAdmin();
+    } catch (e) {
+      console.error('Startup error:', e.message);
+    }
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })();
+}
+
+module.exports = app;
